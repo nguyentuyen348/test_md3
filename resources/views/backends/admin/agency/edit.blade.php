@@ -4,7 +4,9 @@
         <form action="" method="post" enctype="multipart/form-data">
             @csrf
             {{--  @method('PUT')--}}
-
+            <?php
+            $statuss=\App\Models\Status::all();
+            ?>
             <div class="mb-3">
                 <label for="name" class="form-label">name</label>
                 <input type="text" class="form-control" id="name" name="name" value="{{ $agency->name }}">
@@ -31,7 +33,14 @@
 
             <div class="mb-3">
                 <label for="" class="form-label">status</label>
-                <input type="number" class="form-control" id="name" name="status" value="{{ $agency->status }}">
+                @if(isset($statuss) )
+                    <select class="form-control @error('status') is-invalid @enderror" id="" name="status">
+                        <option>select status</option>
+                        @foreach($statuss as $status)
+                            <option value="{{$status->id}}">{{$status->name}}</option>
+                        @endforeach
+                    </select>
+                @endif
             </div>
             <button type="submit" class="btn btn-success"> Update</button>
 

@@ -36,7 +36,11 @@
                     <th> {{$agency->address}}</th>
                     <th> {{$agency->manager}}</th>
                     @if(isset($agency->status))
-                        <th>{{$agency->status}}</th>
+                        <th> @if($agency->status == 1)
+                                dang hoat dong
+                            @else
+                                ngung hoat dong
+                            @endif</th>
                     @endif
                     <th><a href="{{route('agency.edit',$agency)}}" class="btn-warning edit">edit</a></th>
                     <th><a href="{{route('agency.destroy',$agency)}}" class="btn-danger destroy"
