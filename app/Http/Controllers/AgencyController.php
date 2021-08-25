@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AgencyCreateRequest;
 use App\Models\Agency;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -35,7 +36,7 @@ class AgencyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request, Agency $agency)
+    public function store(AgencyCreateRequest $request, Agency $agency)
     {
         $agency->name = $request->name;
         $agency->phone_number = $request->phone_number;
@@ -105,5 +106,12 @@ class AgencyController extends Controller
         $agency->delete();
         return redirect()->action([AgencyController::class, 'index'])
             ->with('success', 'delete success');
+    }
+
+    public function search(Request $request)
+    {
+        $agencySearch = $request->search;
+        $agencies = Agency::where('name', 'LIKE', "%$agencySearch%")->get();
+        return view('backends.admin.agency.list', compact('agencies'));
     }
 }

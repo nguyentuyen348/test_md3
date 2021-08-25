@@ -5,7 +5,7 @@
             @csrf
             {{--  @method('PUT')--}}
             <?php
-            $statuss=\App\Models\Status::all();
+            use App\Models\Status;$statuss= Status::all();
             ?>
             <div class="mb-3">
                 <label for="name" class="form-label">name</label>
@@ -35,7 +35,7 @@
                 <label for="" class="form-label">status</label>
                 @if(isset($statuss) )
                     <select class="form-control @error('status') is-invalid @enderror" id="" name="status">
-                        <option>select status</option>
+                        <option value="{{$agency->status->id}}">{{$agency->status->name}}</option>
                         @foreach($statuss as $status)
                             <option value="{{$status->id}}">{{$status->name}}</option>
                         @endforeach

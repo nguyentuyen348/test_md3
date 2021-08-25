@@ -14,7 +14,7 @@ class StatusController extends Controller
      */
     public function index()
     {
-        $status=Status::all();
+        $statuss=Status::all();
         return view();
     }
 

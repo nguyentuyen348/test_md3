@@ -29,7 +29,9 @@ Route::prefix('admin')->group(function () {
         Route::get('/edit/{id}', [AgencyController::class, 'edit'])->name('agency.edit');
         Route::post('/edit/{id}', [AgencyController::class, 'update']);
         Route::get('/destroy/{id}', [AgencyController::class, 'destroy'])->name('agency.destroy');
-
+        Route::get('/search',[AgencyController::class,'search'])->name('agency.search');
     });
+
+
 });
 

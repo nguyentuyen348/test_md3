@@ -2,7 +2,7 @@
 @section('title','list agency')
 @section('content')
     <div>
-        <p><a class="btn btn-success btn-lg" href="{{route('agency.create')}}">add book</a></p>
+        <p><a class="btn btn-success btn-lg" href="{{route('agency.create')}}">add agency</a></p>
         @if (session('success'))
             <div class="alert alert-success" role="alert">
                 {{ session('success') }}
@@ -22,9 +22,6 @@
             </tr>
             </thead>
             <?php
-            $agencies = \App\Models\Agency::all();
-            $status = \App\Models\Status::all();
-
             ?>
             @foreach($agencies as $agency)
                 <tbody>
